@@ -35,6 +35,7 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
 @property (strong, nonatomic) PHFetchResult *assetsFetchResults;
 @property (strong, nonatomic) PHCachingImageManager *imageManager;
 @property (strong, nonatomic) NSMutableArray *selectedIndexPathArray;
+@property (strong, nonatomic) UILabel *countButton;
 
 @end
 
@@ -51,7 +52,24 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
         if ( [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self] ) {
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Attach", nil) style:UIBarButtonItemStyleDone target:self action:@selector(attachButtonDidSelect:)];
+            UIBarButtonItem *sendItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Attach", nil)
+                                                                         style:UIBarButtonItemStyleDone
+                                                                        target:self
+                                                                        action:@selector(attachButtonDidSelect:)];
+            
+            self.countButton = [[UILabel alloc] init];
+            self.countButton.frame = CGRectMake(0, 0, 16, 16);
+            self.countButton.clipsToBounds = YES;
+            self.countButton.layer.masksToBounds = YES;
+            self.countButton.layer.cornerRadius = 8;
+            self.countButton.backgroundColor = self.countButton.tintColor;
+            self.countButton.font = [UIFont boldSystemFontOfSize: 12];
+            self.countButton.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+            self.countButton.textColor = [UIColor whiteColor];
+            self.countButton.textAlignment = NSTextAlignmentCenter;
+            UIBarButtonItem *countItem = [[UIBarButtonItem alloc] initWithCustomView: self.countButton];
+            
+            self.navigationItem.rightBarButtonItems = @[sendItem, countItem];
         }
     }
     
@@ -222,6 +240,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.selectedIndexPathArray addObject:indexPath];
+    self.countButton.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
     BOOL allowsMultipleSelection = NO;
     if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
         allowsMultipleSelection = [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self];

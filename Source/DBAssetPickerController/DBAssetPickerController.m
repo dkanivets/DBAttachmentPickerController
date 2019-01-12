@@ -37,7 +37,38 @@
     DBAssetGroupsViewController *groupController = [[DBAssetGroupsViewController alloc] initWithNibName:NSStringFromClass([DBAssetGroupsViewController class]) bundle:[NSBundle dbAttachmentPickerBundle]];
     groupController.assetMediaType = self.assetMediaType;
     groupController.assetGroupsDelegate = self;
-    [self setViewControllers:@[groupController]];
+    
+//
+//    for (NSNumber *assetCollectionSubtype in assetCollectionSubtypes) {
+//        NSArray *collections = smartAlbums[assetCollectionSubtype];
+//        for (PHAssetCollection *assetCollection in collections) {
+//
+//            PHFetchOptions *options = [PHFetchOptions new];
+//            if (self.assetMediaType == PHAssetMediaTypeVideo || self.assetMediaType == PHAssetMediaTypeImage) {
+//                options.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", self.assetMediaType];
+//            }
+//            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+//
+//            if (fetchResult.count) {
+//                [assetCollections addObject:assetCollection];
+//            }
+//        }
+//    }
+    
+    PHFetchOptions *options = [PHFetchOptions new];
+//    options.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+    PHAssetCollection *assetCollection = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                                  subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
+                                                                                  options:options].firstObject;
+//    assetCollection.assetCollectionSubtype = PHAssetCollectionSubtypeSmartAlbumUserLibrary;
+//        PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+  
+        DBAssetItemsViewController *itemsController = [[DBAssetItemsViewController alloc] initWithNibName:NSStringFromClass([DBAssetItemsViewController class]) bundle:[NSBundle dbAttachmentPickerBundle]];
+    itemsController.assetMediaType = self.assetMediaType;
+    itemsController.assetItemsDelegate = self;
+    itemsController.assetCollection = assetCollection;
+    
+    [self setViewControllers:@[groupController, itemsController]];
 }
 
 #pragma mark - DBAssetGroupsViewControllerDelegate
