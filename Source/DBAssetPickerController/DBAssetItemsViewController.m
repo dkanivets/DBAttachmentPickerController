@@ -64,7 +64,9 @@ static NSString * const reuseIdentifier = @"Cell";
             self.countButton.layer.cornerRadius = 8;
             self.countButton.backgroundColor = self.countButton.tintColor;
             self.countButton.font = [UIFont boldSystemFontOfSize: 12];
-            self.countButton.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+            NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+            self.countButton.text = text;
+            self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
             self.countButton.textColor = [UIColor whiteColor];
             self.countButton.textAlignment = NSTextAlignmentCenter;
             UIBarButtonItem *countItem = [[UIBarButtonItem alloc] initWithCustomView: self.countButton];
@@ -240,7 +242,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.selectedIndexPathArray addObject:indexPath];
-    self.countButton.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+    self.countButton.text = text;
+    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
     BOOL allowsMultipleSelection = NO;
     if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
         allowsMultipleSelection = [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self];
@@ -252,6 +256,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.selectedIndexPathArray removeObject:indexPath];
+    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+    self.countButton.text = text;
+    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout
