@@ -37,7 +37,8 @@
     DBAssetGroupsViewController *groupController = [[DBAssetGroupsViewController alloc] initWithNibName:NSStringFromClass([DBAssetGroupsViewController class]) bundle:[NSBundle dbAttachmentPickerBundle]];
     groupController.assetMediaType = self.assetMediaType;
     groupController.assetGroupsDelegate = self;
-    
+//    self.navigationBar.translucent = NO;
+    self.navigationBar.backgroundColor = [UIColor redColor];// colorWithRed:(247.0f/255.0f) green:(247.0f/255.0f) blue:(247.0f/255.0f) alpha:1];
 //
 //    for (NSNumber *assetCollectionSubtype in assetCollectionSubtypes) {
 //        NSArray *collections = smartAlbums[assetCollectionSubtype];

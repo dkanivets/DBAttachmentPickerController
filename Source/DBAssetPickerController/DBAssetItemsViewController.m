@@ -108,7 +108,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     [cancelButton.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
     [cancelButton.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
-    cancelButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    cancelButton.backgroundColor = [UIColor colorWithRed:(247.0f/255.0f) green:(247.0f/255.0f) blue:(247.0f/255.0f) alpha:1];
     [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancelButton setTitleColor:self.view.tintColor forState: UIControlStateNormal];
     cancelButton.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;

@@ -127,7 +127,6 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
     [super viewDidLoad];
     
     self.selectedIndexPathArray = [NSMutableArray arrayWithCapacity:100];
-    
     if (self.showCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
