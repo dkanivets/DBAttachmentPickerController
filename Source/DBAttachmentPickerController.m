@@ -143,30 +143,63 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
 - (void)presentOnViewController:(UIViewController *)initialViewController {
     self.initialViewController = initialViewController;
     __weak typeof(self) weakSelf = self;
-    self.alertController = [DBAttachmentAlertController attachmentAlertControllerWithMediaType:[self assetMediaType]
-                                                                       allowsMultipleSelection:self.allowsMultipleSelection
-                                                                            allowsMediaLibrary:( (self.mediaType & DBAttachmentMediaTypeImage) || (self.mediaType & DBAttachmentMediaTypeVideo) )
-                                                                               allowsOtherApps:self.allowsSelectionFromOtherApps
-                                                                                 attachHandler:^(NSArray<PHAsset *> *assetArray) {
-                                                                                     NSArray<DBAttachment *> *attachmentArray = [weakSelf attachmentArrayFromPHAssetArray:assetArray];
-                                                                                     [weakSelf finishPickingWithAttachmentArray:attachmentArray];
-                                                                                 } allAlbumsHandler:^(UIAlertAction *action) {
-                                                                                     [weakSelf allAlbumsDidSelect];
-                                                                                 } takePictureHandler:^(UIAlertAction *action) {
-                                                                                     [weakSelf takePictureButtonDidSelect];
-                                                                                 } otherAppsHandler:^(UIAlertAction *action) {
-                                                                                     [weakSelf otherAppsButtonDidSelect];
-                                                                                 } cancelHandler:^(UIAlertAction * _Nonnull action) {
-                                                                                     [weakSelf cancelDidSelect];
-                                                                                 }];
     
-    self.alertController.popoverPresentationController.sourceView = [self popoverPresentationView];
-    self.alertController.popoverPresentationController.sourceRect = [self popoverPresentationRect];
-    self.alertController.popoverPresentationController.permittedArrowDirections = [self popoverPresentationArrowDirection];
-    
-    [self.initialViewController presentViewController:self.alertController animated:YES completion:^{
-        weakSelf.alertController = nil;
-    }];
+    if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusNotDetermined){
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            self.alertController = [DBAttachmentAlertController attachmentAlertControllerWithMediaType:[self assetMediaType]
+                                                                               allowsMultipleSelection:self.allowsMultipleSelection
+                                                                                    allowsMediaLibrary:( (self.mediaType & DBAttachmentMediaTypeImage) || (self.mediaType & DBAttachmentMediaTypeVideo) )
+                                                                                       allowsOtherApps:self.allowsSelectionFromOtherApps
+                                                                                         attachHandler:^(NSArray<PHAsset *> *assetArray) {
+                                                                                             NSArray<DBAttachment *> *attachmentArray = [weakSelf attachmentArrayFromPHAssetArray:assetArray];
+                                                                                             [weakSelf finishPickingWithAttachmentArray:attachmentArray];
+                                                                                         } allAlbumsHandler:^(UIAlertAction *action) {
+                                                                                             [weakSelf allAlbumsDidSelect];
+                                                                                         } takePictureHandler:^(UIAlertAction *action) {
+                                                                                             [weakSelf takePictureButtonDidSelect];
+                                                                                         } otherAppsHandler:^(UIAlertAction *action) {
+                                                                                             [weakSelf otherAppsButtonDidSelect];
+                                                                                         } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                                                                                             [weakSelf cancelDidSelect];
+                                                                                         }];
+            
+            self.alertController.popoverPresentationController.sourceView = [self popoverPresentationView];
+            self.alertController.popoverPresentationController.sourceRect = [self popoverPresentationRect];
+            self.alertController.popoverPresentationController.permittedArrowDirections = [self popoverPresentationArrowDirection];
+            
+            [self.initialViewController presentViewController:self.alertController animated:YES completion:^{
+                weakSelf.alertController = nil;
+            }];
+        }];
+    } else if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusNotDetermined) {
+        [self goToSettingsAlert];
+    } else {
+        self.alertController = [DBAttachmentAlertController attachmentAlertControllerWithMediaType:[self assetMediaType]
+                                                                           allowsMultipleSelection:self.allowsMultipleSelection
+                                                                                allowsMediaLibrary:( (self.mediaType & DBAttachmentMediaTypeImage) || (self.mediaType & DBAttachmentMediaTypeVideo) )
+                                                                                   allowsOtherApps:self.allowsSelectionFromOtherApps
+                                                                                     attachHandler:^(NSArray<PHAsset *> *assetArray) {
+                                                                                         NSArray<DBAttachment *> *attachmentArray = [weakSelf attachmentArrayFromPHAssetArray:assetArray];
+                                                                                         [weakSelf finishPickingWithAttachmentArray:attachmentArray];
+                                                                                     } allAlbumsHandler:^(UIAlertAction *action) {
+                                                                                         [weakSelf allAlbumsDidSelect];
+                                                                                     } takePictureHandler:^(UIAlertAction *action) {
+                                                                                         [weakSelf takePictureButtonDidSelect];
+                                                                                     } otherAppsHandler:^(UIAlertAction *action) {
+                                                                                         [weakSelf otherAppsButtonDidSelect];
+                                                                                     } cancelHandler:^(UIAlertAction * _Nonnull action) {
+                                                                                         [weakSelf cancelDidSelect];
+                                                                                     }];
+        
+        self.alertController.popoverPresentationController.sourceView = [self popoverPresentationView];
+        self.alertController.popoverPresentationController.sourceRect = [self popoverPresentationRect];
+        self.alertController.popoverPresentationController.permittedArrowDirections = [self popoverPresentationArrowDirection];
+        
+        [self.initialViewController presentViewController:self.alertController animated:YES completion:^{
+            weakSelf.alertController = nil;
+        }];
+    }
+   
 }
 
 - (void)dismissAttachmentPicker {
@@ -220,11 +253,55 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
 #pragma mark - Actions
 
 - (void)allAlbumsDidSelect {
-    DBAssetPickerController *viewController =[[DBAssetPickerController alloc] init];
-    viewController.assetMediaType = [self assetMediaType];
-    viewController.assetPickerDelegate = self;
-    [self.initialViewController presentViewController:viewController animated:YES completion:nil];
+    if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusDenied) {
+        [self goToSettingsAlert];
+    } else if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusNotDetermined){
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                DBAssetPickerController *viewController =[[DBAssetPickerController alloc] init];
+                viewController.assetMediaType = [self assetMediaType];
+                viewController.assetPickerDelegate = self;
+                [self.initialViewController presentViewController:viewController animated:YES completion:nil];
+            }
+        }];
+    } else {
+        DBAssetPickerController *viewController =[[DBAssetPickerController alloc] init];
+        viewController.assetMediaType = [self assetMediaType];
+        viewController.assetPickerDelegate = self;
+        [self.initialViewController presentViewController:viewController animated:YES completion:nil];
+    }
+
 }
+
+- (void)goToSettingsAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Access not allowed" message:@"Please enable access to camera and photos in Privacy Settings" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"Go to Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"UIApplicationOpenSettingsURLString"]];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:settingsAction];
+    [alert addAction:cancelAction];
+    [self.initialViewController presentViewController:alert animated:YES completion:nil];
+    
+}
+
+//func goToSettingsAlert() {
+//    let alertController = StatusBarFixedAlert (title: "Access not allowed", message: "Please enable access to camera and photos in Privacy Settings", preferredStyle: .alert)
+//    let settingsAction = UIAlertAction(title: "Go to Settings", style: .default) { (_) -> Void in
+//        let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
+//
+//        if let url = settingsUrl {
+//            UIApplication.shared.openURL(url)
+//        }
+//    }
+//    let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+//    alertController.addAction(settingsAction)
+//    alertController.addAction(cancelAction)
+//
+//    self.delegate?
+//    .presentViewController(alertController, animated: true, completion: nil)
+//}
+
 
 - (void)otherAppsButtonDidSelect {
     NSMutableArray *documentMediaTypes = [NSMutableArray arrayWithCapacity:10];
@@ -261,24 +338,49 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
         return;
     }
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = NO;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    if ( (self.mediaType & DBAttachmentMediaTypeImage) && !(self.mediaType & DBAttachmentMediaTypeVideo) ) {
-        picker.mediaTypes = @[(NSString *)kUTTypeImage];
-        picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    } else if ( !(self.mediaType & DBAttachmentMediaTypeImage) && (self.mediaType & DBAttachmentMediaTypeVideo) ) {
-        picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo];
-        picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-        picker.videoQuality = self.capturedVideoQulity;
+    if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusDenied) {
+        [self goToSettingsAlert];
+    } else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusNotDetermined) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            picker.allowsEditing = NO;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+            if ( (self.mediaType & DBAttachmentMediaTypeImage) && !(self.mediaType & DBAttachmentMediaTypeVideo) ) {
+                picker.mediaTypes = @[(NSString *)kUTTypeImage];
+                picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+            } else if ( !(self.mediaType & DBAttachmentMediaTypeImage) && (self.mediaType & DBAttachmentMediaTypeVideo) ) {
+                picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo];
+                picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+                picker.videoQuality = self.capturedVideoQulity;
+            } else {
+                picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo, (NSString *)kUTTypeImage];
+                picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+            }
+            
+            [self.initialViewController presentViewController:picker animated:YES completion:nil];
+        }];
     } else {
-        picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo, (NSString *)kUTTypeImage];
-        picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = NO;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        if ( (self.mediaType & DBAttachmentMediaTypeImage) && !(self.mediaType & DBAttachmentMediaTypeVideo) ) {
+            picker.mediaTypes = @[(NSString *)kUTTypeImage];
+            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        } else if ( !(self.mediaType & DBAttachmentMediaTypeImage) && (self.mediaType & DBAttachmentMediaTypeVideo) ) {
+            picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo];
+            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+            picker.videoQuality = self.capturedVideoQulity;
+        } else {
+            picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo, (NSString *)kUTTypeImage];
+            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        }
+        
+        [self.initialViewController presentViewController:picker animated:YES completion:nil];
     }
-    
-    [self.initialViewController presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark

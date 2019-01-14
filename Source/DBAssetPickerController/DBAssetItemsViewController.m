@@ -268,7 +268,16 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPathArray.count >= 10) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  
     [self.selectedIndexPathArray addObject:indexPath];
     NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
     self.countButton.text = text;

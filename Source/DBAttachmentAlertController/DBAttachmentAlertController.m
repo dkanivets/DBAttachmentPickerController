@@ -70,23 +70,6 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
     controller.showCollectionView = ( showPhotoOrVideo && controller.assetsFetchResult.count );
     controller.title = ( controller.showCollectionView ? @"\n\n\n\n\n" : NSLocalizedString(@"Attach files", @"Title") );
     
-    if ( showPhotoOrVideo ) {
-        NSString *buttonTitle;
-        switch (controller.assetMediaType) {
-            case PHAssetMediaTypeVideo:
-                buttonTitle = NSLocalizedString(@"Take a video", @"Button on main menu");
-                break;
-            case PHAssetMediaTypeImage:
-                buttonTitle = NSLocalizedString(@"Take a picture", @"Button on main menu");
-                break;
-            default:
-                buttonTitle = NSLocalizedString(@"Take a picture or a video", @"Button on main menu");
-                break;
-        }
-        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:takePictureHandler];
-        [controller addAction:cameraAction];
-    }
-    
     if ( showPhotoOrVideo && controller.assetsFetchResult.count ) {
         __weak DBAttachmentAlertController *weakController = controller;
         UIAlertAction *attachAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"All albums", @"Button on main menu") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -108,6 +91,23 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
                 }
             }];
         };
+    }
+    
+    if ( showPhotoOrVideo ) {
+        NSString *buttonTitle;
+        switch (controller.assetMediaType) {
+            case PHAssetMediaTypeVideo:
+                buttonTitle = NSLocalizedString(@"Take a video", @"Button on main menu");
+                break;
+            case PHAssetMediaTypeImage:
+                buttonTitle = NSLocalizedString(@"Take a picture", @"Button on main menu");
+                break;
+            default:
+                buttonTitle = NSLocalizedString(@"Take a picture or a video", @"Button on main menu");
+                break;
+        }
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:takePictureHandler];
+        [controller addAction:cameraAction];
     }
     
     if (allowsOtherApps) {
