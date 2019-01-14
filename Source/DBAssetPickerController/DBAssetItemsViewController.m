@@ -24,6 +24,8 @@
 #import "DBThumbnailPhotoCell.h"
 #import "NSIndexSet+DBLibrary.h"
 #import "NSBundle+DBLibrary.h"
+#import "DBAttachmentPickerController.h"
+#import "DBAssetPickerController.h"
 
 static const NSInteger kNumberItemsPerRowPortrait = 4;
 static const NSInteger kNumberItemsPerRowLandscape = 7;
@@ -88,6 +90,32 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([DBThumbnailPhotoCell class]) bundle:[NSBundle dbAttachmentPickerBundle]] forCellWithReuseIdentifier:kPhotoCellIdentifier];
     
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIButton *cancelButton = [[UIButton alloc] init];
+    [self.view addSubview: cancelButton];
+    cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [cancelButton.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    
+    if (@available(iOS 11.0, *)) {
+        [cancelButton.heightAnchor constraintEqualToConstant:44 + UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom].active = YES;
+    } else {
+        [cancelButton.heightAnchor constraintEqualToConstant:44].active = YES;
+    }
+    [cancelButton.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [cancelButton.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+    cancelButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:self.view.tintColor forState: UIControlStateNormal];
+    cancelButton.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
+    cancelButton.layer.borderWidth = 1 / [[UIScreen mainScreen] scale];
+    DBAssetPickerController *controller = (DBAssetPickerController*)self.navigationController;
+    
+    [cancelButton addTarget:controller action:@selector(DBAssetGroupsViewControllerDidCancel:) forControlEvents: UIControlEventTouchUpInside];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

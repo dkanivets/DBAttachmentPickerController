@@ -110,6 +110,8 @@ typedef void (^CancelBlock)();
  */
 - (void)presentOnViewController:(UIViewController *)initialViewController;
 
+- (void)cancelDidSelect;
+
 @end
 
 NS_ASSUME_NONNULL_END

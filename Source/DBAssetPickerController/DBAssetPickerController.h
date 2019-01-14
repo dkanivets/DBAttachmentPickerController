@@ -20,6 +20,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBAssetGroupsViewController.h"
 
 @class DBAssetPickerController, PHAsset;
 @protocol DBAssetPickerControllerDelegate <NSObject>
@@ -37,5 +38,6 @@ NS_ASSUME_NONNULL_END
 
 @property (weak, nonatomic, nullable) id<DBAssetPickerControllerDelegate> assetPickerDelegate;
 @property (assign, nonatomic) PHAssetMediaType assetMediaType;
+- (void)DBAssetGroupsViewControllerDidCancel:(DBAssetGroupsViewController *)controller;
 
 @end
