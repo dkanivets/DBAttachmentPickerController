@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.resources = 'Source/**/*.{xib}'
   s.resource_bundle = { 'DBAttachmentPickerController' => ['Source/Localization/*.lproj'] }
   s.public_header_files = 'Source/**/*.h'
+  s.dependency 'BEMCheckBox', '~> 1.4.1'
 end

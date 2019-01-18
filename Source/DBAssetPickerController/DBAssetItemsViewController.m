@@ -233,7 +233,36 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.tintColor = self.collectionView.tintColor;
     cell.identifier = asset.localIdentifier;
     cell.needsDisplayEmptySelectedIndicator = NO;
-    
+    cell.indexPath = indexPath;
+    cell.selectButtonTapHandler = ^(NSIndexPath *indexPath) {
+        if (self.selectedIndexPathArray.count < 10) {
+            [self.selectedIndexPathArray addObject:indexPath];
+            NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+            self.countButton.text = text;
+            
+            [UIView animateWithDuration:0.4 animations:^{
+                self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
+            }];
+            BOOL allowsMultipleSelection = NO;
+            if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
+                allowsMultipleSelection = [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self];
+            }
+            if ( !allowsMultipleSelection ) {
+                [self attachButtonDidSelect:nil];
+            }
+        } else {
+            cell.selectorCheckBox.on = NO;
+        }
+    };
+    cell.unselectButtonTapHandler = ^(NSIndexPath *indexPath) {
+        [self.selectedIndexPathArray removeObject:indexPath];
+        NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+        self.countButton.text = text;
+        [UIView animateWithDuration:0.4 animations:^{
+            self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
+        }];
+        
+    };
     [self.imageManager cancelImageRequest:cell.phImageRequestID];
     
     [cell.assetImageView configureWithAssetMediaType:asset.mediaType subtype:asset.mediaSubtypes];
@@ -277,25 +306,25 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
-    [self.selectedIndexPathArray addObject:indexPath];
-    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
-    self.countButton.text = text;
-    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
-    BOOL allowsMultipleSelection = NO;
-    if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
-        allowsMultipleSelection = [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self];
-    }
-    if ( !allowsMultipleSelection ) {
-        [self attachButtonDidSelect:nil];
-    }
+//
+//    [self.selectedIndexPathArray addObject:indexPath];
+//    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+//    self.countButton.text = text;
+//    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
+//    BOOL allowsMultipleSelection = NO;
+//    if ([self.assetItemsDelegate respondsToSelector:@selector(DBAssetImageViewControllerAllowsMultipleSelection:)]) {
+//        allowsMultipleSelection = [self.assetItemsDelegate DBAssetImageViewControllerAllowsMultipleSelection:self];
+//    }
+//    if ( !allowsMultipleSelection ) {
+//        [self attachButtonDidSelect:nil];
+//    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.selectedIndexPathArray removeObject:indexPath];
-    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
-    self.countButton.text = text;
-    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
+//    [self.selectedIndexPathArray removeObject:indexPath];
+//    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
+//    self.countButton.text = text;
+//    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout

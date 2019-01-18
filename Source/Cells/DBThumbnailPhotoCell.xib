@@ -21,13 +21,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="May-cB-nvj" customClass="DBAssetImageView">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     </imageView>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s1Y-gz-hcc">
-                        <rect key="frame" x="70" y="4" width="26" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="26" id="9YU-5K-9UT"/>
-                            <constraint firstAttribute="height" constant="26" id="umo-BR-C2p"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh4-r3-SBz">
                         <rect key="frame" x="20" y="80" width="76" height="16"/>
                         <constraints>
@@ -40,10 +33,8 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="s1Y-gz-hcc" secondAttribute="trailing" constant="4" id="4o8-0A-gh0"/>
                 <constraint firstAttribute="trailing" secondItem="May-cB-nvj" secondAttribute="trailing" id="Caw-jf-HkV"/>
                 <constraint firstAttribute="trailing" secondItem="Uh4-r3-SBz" secondAttribute="trailing" constant="4" id="Mue-oe-8qj"/>
-                <constraint firstItem="s1Y-gz-hcc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="b2D-m6-tj9"/>
                 <constraint firstAttribute="bottom" secondItem="May-cB-nvj" secondAttribute="bottom" id="cUH-uV-2dx"/>
                 <constraint firstItem="May-cB-nvj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fNR-2z-PdK"/>
                 <constraint firstAttribute="bottom" secondItem="Uh4-r3-SBz" secondAttribute="bottom" constant="4" id="jqw-zh-SBv"/>
@@ -53,9 +44,8 @@
             <connections>
                 <outlet property="assetImageView" destination="May-cB-nvj" id="xKQ-yA-iTs"/>
                 <outlet property="durationLabel" destination="Uh4-r3-SBz" id="xMB-dI-VUq"/>
-                <outlet property="selectorImageView" destination="s1Y-gz-hcc" id="ofR-4h-HhY"/>
-                <outlet property="selectorImageViewRightConstraint" destination="4o8-0A-gh0" id="6ai-Xm-qJs"/>
             </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="48.575712143928037"/>
         </collectionViewCell>
     </objects>
 </document>

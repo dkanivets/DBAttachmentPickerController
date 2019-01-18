@@ -73,7 +73,7 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
     if ( showPhotoOrVideo && controller.assetsFetchResult.count ) {
         __weak DBAttachmentAlertController *weakController = controller;
         UIAlertAction *attachAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"All albums", @"Button on main menu") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if ([weakController.collectionView indexPathsForSelectedItems].count) {
+            if (weakController.selectedIndexPathArray.count) {
                 if (attachHandler) {
                     attachHandler([weakController getSelectedAssetArray]);
                 }
@@ -290,6 +290,23 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
     cell.tintColor = self.collectionView.tintColor;
     cell.identifier = asset.localIdentifier;
     cell.needsDisplayEmptySelectedIndicator = self.needsDisplayEmptySelectedIndicator;
+    cell.selectButtonTapHandler = ^(NSIndexPath *indexPath) {
+        if (self.selectedIndexPathArray.count < 10) {
+            [self.selectedIndexPathArray addObject:indexPath];
+            if (self.allowsMultipleSelection) {
+                [self updateAttachPhotoCountIfNedded];
+                self.needsDisplayEmptySelectedIndicator = YES;
+            } else {
+                self.extensionAttachHandler([self getSelectedAssetArray]);
+            }
+        }
+    };
+    cell.unselectButtonTapHandler = ^(NSIndexPath *indexPath) {
+        [self.selectedIndexPathArray removeObject:indexPath];
+        [self updateAttachPhotoCountIfNedded];
+
+    };
+    cell.indexPath = indexPath;
     [cell.assetImageView configureWithAssetMediaType:asset.mediaType subtype:asset.mediaSubtypes];
     
     if (asset.mediaType == PHAssetMediaTypeVideo) {
@@ -318,24 +335,26 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.selectedIndexPathArray addObject:indexPath];
-    if (self.allowsMultipleSelection) {
-        [self updateAttachPhotoCountIfNedded];
-        self.needsDisplayEmptySelectedIndicator = YES;
-    } else {
-        self.extensionAttachHandler([self getSelectedAssetArray]);
-    }
+//    [self.selectedIndexPathArray addObject:indexPath];
+//    if (self.allowsMultipleSelection) {
+//        [self updateAttachPhotoCountIfNedded];
+//        self.needsDisplayEmptySelectedIndicator = YES;
+//    } else {
+//        self.extensionAttachHandler([self getSelectedAssetArray]);
+//    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.selectedIndexPathArray removeObject:indexPath];
-    [self updateAttachPhotoCountIfNedded];
+//    [self.selectedIndexPathArray removeObject:indexPath];
+//    [self updateAttachPhotoCountIfNedded];
 }
 
 #pragma mark Helpers
 
 - (void)updateAttachPhotoCountIfNedded {
-    NSArray *selectedItems = [self.collectionView indexPathsForSelectedItems];
+//    NSArray *selectedItems = [self.collectionView indexPathsForSelectedItems];
+
+    NSArray *selectedItems = self.selectedIndexPathArray;
     self.attachActionText = ( selectedItems.count ? [NSString stringWithFormat:NSLocalizedString(@"Attach %zd file(s)", @"Button on main menu"), selectedItems.count] : NSLocalizedString(@"All albums", nil) );
 }
 

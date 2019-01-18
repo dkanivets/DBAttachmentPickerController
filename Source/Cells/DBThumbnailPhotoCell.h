@@ -22,11 +22,17 @@
 #import <UIKit/UIKit.h>
 #import <Photos/PHImageManager.h>
 #import "DBAssetImageView.h"
+#import "BEMCheckBox.h"
 
 @interface DBThumbnailPhotoCell : UICollectionViewCell
 
 @property (weak, nonatomic, nullable) IBOutlet DBAssetImageView *assetImageView;
 @property (weak, nonatomic, nullable) IBOutlet UILabel *durationLabel;
+@property (nonatomic, copy) void(^selectButtonTapHandler)(NSIndexPath*);
+@property (nonatomic, copy) void(^unselectButtonTapHandler)(NSIndexPath*);
+@property (strong, nonatomic) BEMCheckBox *selectorCheckBox;
+
+@property (strong, nonatomic) NSIndexPath *indexPath;
 
 @property (assign, nonatomic) BOOL needsDisplayEmptySelectedIndicator;
 @property (copy, nonatomic, nullable) NSString *identifier;

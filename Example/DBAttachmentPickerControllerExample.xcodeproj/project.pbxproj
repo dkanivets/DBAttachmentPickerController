@@ -33,6 +33,10 @@
 		C3A004DE1CCDE66C00945C1B /* DBAssetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A004DD1CCDE66C00945C1B /* DBAssetImageView.m */; };
 		C3A949421CA188B80061EE61 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A949411CA188B80061EE61 /* CoreLocation.framework */; };
 		C3A949451CA18D440061EE61 /* NSDateFormatter+DBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */; };
+		C7C56FA421F16EE5005EA9C0 /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */; };
+		C7C56FA521F16EE5005EA9C0 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */; };
+		C7C56FA621F16EE5005EA9C0 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */; };
+		C7C56FA721F16EE5005EA9C0 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +103,14 @@
 		C3A949411CA188B80061EE61 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C3A949431CA18D440061EE61 /* NSDateFormatter+DBLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+DBLibrary.h"; sourceTree = "<group>"; };
 		C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+DBLibrary.m"; sourceTree = "<group>"; };
+		C7C56F9C21F16EE4005EA9C0 /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBoxGroup.h; sourceTree = "<group>"; };
+		C7C56F9D21F16EE4005EA9C0 /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBoxGroup.m; sourceTree = "<group>"; };
+		C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
+		C7C56FA021F16EE4005EA9C0 /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
+		C7C56FA121F16EE4005EA9C0 /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
+		C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
+		C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +233,7 @@
 		C3134EF61C9C33CA0023B9E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C7C56F9B21F16ED0005EA9C0 /* BEMCheckBox */,
 				C3134ECA1C9C321C0023B9E6 /* DBAttachmentPickerController */,
 				C3134EF71C9C33CA0023B9E6 /* ViewController.h */,
 				C3134EF81C9C33CA0023B9E6 /* ViewController.m */,
@@ -272,6 +285,21 @@
 				C3A004DD1CCDE66C00945C1B /* DBAssetImageView.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C7C56F9B21F16ED0005EA9C0 /* BEMCheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				C7C56FA021F16EE4005EA9C0 /* BEMAnimationManager.h */,
+				C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */,
+				C7C56F9D21F16EE4005EA9C0 /* BEMCheckBox.h */,
+				C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */,
+				C7C56F9C21F16EE4005EA9C0 /* BEMCheckBoxGroup.h */,
+				C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */,
+				C7C56FA121F16EE4005EA9C0 /* BEMPathManager.h */,
+				C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */,
+			);
+			path = BEMCheckBox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +396,9 @@
 				A41C4BD71D557B9A002FEA0B /* NSBundle+DBLibrary.m in Sources */,
 				C3134EF91C9C33CA0023B9E6 /* ViewController.m in Sources */,
 				C3A004DE1CCDE66C00945C1B /* DBAssetImageView.m in Sources */,
+				C7C56FA521F16EE5005EA9C0 /* BEMCheckBox.m in Sources */,
 				C3A949451CA18D440061EE61 /* NSDateFormatter+DBLibrary.m in Sources */,
+				C7C56FA621F16EE5005EA9C0 /* BEMAnimationManager.m in Sources */,
 				C3134EF41C9C323C0023B9E6 /* DBAttachmentPickerController.m in Sources */,
 				C3134EB71C9C30990023B9E6 /* AppDelegate.m in Sources */,
 				C3134EE81C9C323C0023B9E6 /* NSIndexSet+DBLibrary.m in Sources */,
@@ -378,6 +408,8 @@
 				C3134EE91C9C323C0023B9E6 /* UIImage+DBAssetIcons.m in Sources */,
 				C3849AB91C9C3D8C00D12EEF /* DBAssetPickerController.m in Sources */,
 				C3849ABA1C9C3D8C00D12EEF /* DBAttachmentAlertController.m in Sources */,
+				C7C56FA721F16EE5005EA9C0 /* BEMPathManager.m in Sources */,
+				C7C56FA421F16EE5005EA9C0 /* BEMCheckBoxGroup.m in Sources */,
 				C3134EF51C9C323C0023B9E6 /* DBAttachment.m in Sources */,
 				C3849AB51C9C3D8C00D12EEF /* DBAssetGroupsViewController.m in Sources */,
 				C3849AB71C9C3D8C00D12EEF /* DBAssetItemsViewController.m in Sources */,

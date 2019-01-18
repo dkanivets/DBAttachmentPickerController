@@ -23,12 +23,12 @@
 #import "UIImage+DBAssetIcons.h"
 #import "NSBundle+DBLibrary.h"
 
+
 static const CGFloat kDefaultSelectorImageViewOffset = 4.f;
 
-@interface DBThumbnailPhotoCell ()
+@interface DBThumbnailPhotoCell () <BEMCheckBoxDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *selectorImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectorImageViewRightConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectorImageViewRightConstraint;
 
 @end
 
@@ -46,8 +46,23 @@ static const CGFloat kDefaultSelectorImageViewOffset = 4.f;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.selectorImageView.image = [UIImage imageOfSelectorOffIcon];
-    self.selectorImageView.highlightedImage = [UIImage imageOfSelectorOnIconWithTintColor:self.tintColor];
+    self.selectorCheckBox = [[BEMCheckBox alloc] initWithFrame:CGRectMake(0, 0, 26, 26)];
+    self.selectorCheckBox.boxType = BEMBoxTypeCircle;
+    self.selectorCheckBox.onAnimationType = BEMAnimationTypeBounce;
+    self.selectorCheckBox.offAnimationType = BEMAnimationTypeBounce;
+
+    [self.contentView addSubview:self.selectorCheckBox];
+    self.selectorCheckBox.translatesAutoresizingMaskIntoConstraints = NO;
+    [[self.selectorCheckBox.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-4] setActive:TRUE];
+    [[self.selectorCheckBox.topAnchor constraintEqualToAnchor:self.topAnchor constant:4] setActive:TRUE];
+    self.selectorCheckBox.delegate = self;
+}
+- (void)didTapCheckBox:(BEMCheckBox *)checkBox {
+    if (checkBox.on == TRUE) {
+        self.selectButtonTapHandler(self.indexPath);
+    } else {
+        self.unselectButtonTapHandler(self.indexPath);
+    }
 }
 
 - (void)prepareForReuse {
@@ -59,15 +74,20 @@ static const CGFloat kDefaultSelectorImageViewOffset = 4.f;
 
 - (void)setTintColor:(UIColor *)tintColor {
     [super setTintColor:tintColor];
-    [self.selectorImageView setTintColor:tintColor];
+    self.selectorCheckBox.tintColor = UIColor.whiteColor;
+    self.selectorCheckBox.onFillColor = tintColor;
+    self.selectorCheckBox.onTintColor = UIColor.whiteColor;
+    self.selectorCheckBox.onCheckColor = UIColor.whiteColor;
+    
+//    [self.selectorImageView setTintColor:tintColor];
 }
 
-- (void)setSelectorOffset:(CGFloat)selectorOffset {
-    _selectorOffset = selectorOffset;
-    
-    const CGFloat maxOfsset = CGRectGetWidth(self.bounds) - kDefaultSelectorImageViewOffset - CGRectGetWidth(self.selectorImageView.frame);
-    self.selectorImageViewRightConstraint.constant = MIN(maxOfsset, kDefaultSelectorImageViewOffset + selectorOffset);
-}
+//- (void)setSelectorOffset:(CGFloat)selectorOffset {
+//    _selectorOffset = selectorOffset;
+//
+//    const CGFloat maxOfsset = CGRectGetWidth(self.bounds) - kDefaultSelectorImageViewOffset - CGRectGetWidth(self.selectorImageView.frame);
+//    self.selectorImageViewRightConstraint.constant = MIN(maxOfsset, kDefaultSelectorImageViewOffset + selectorOffset);
+//}
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
@@ -89,8 +109,8 @@ static const CGFloat kDefaultSelectorImageViewOffset = 4.f;
 #pragma mark Helpers
 
 - (void)updateSelectorIndicatorStateIfNedded {
-    self.selectorImageView.highlighted = (self.selected || self.highlighted);
-    self.selectorImageView.hidden = ( !self.selected && !self.needsDisplayEmptySelectedIndicator);
+//    self.selectorImageView.highlighted = (self.selected || self.highlighted);
+//    self.selectorImageView.hidden = ( !self.selected && !self.needsDisplayEmptySelectedIndicator);
 }
 
 @end

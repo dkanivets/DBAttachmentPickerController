@@ -171,7 +171,7 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
                 weakSelf.alertController = nil;
             }];
         }];
-    } else if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusNotDetermined) {
+    } else if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusDenied) {
         [self goToSettingsAlert];
     } else {
         self.alertController = [DBAttachmentAlertController attachmentAlertControllerWithMediaType:[self assetMediaType]
@@ -276,7 +276,14 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
 - (void)goToSettingsAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Access not allowed" message:@"Please enable access to camera and photos in Privacy Settings" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"Go to Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"UIApplicationOpenSettingsURLString"]];
+//        if ([[UIApplication sharedApplication] respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
+//
+//        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+
+//        }
+        
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:settingsAction];
