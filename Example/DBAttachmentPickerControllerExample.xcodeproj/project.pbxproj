@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05D25517AA7C30E549330E8D /* Pods_DBAttachmentPickerControllerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88EEEA701348E377F70DBF8 /* Pods_DBAttachmentPickerControllerExample.framework */; };
 		A401D4F51D537AEC006B2909 /* DBAttachmentPickerController.strings in Resources */ = {isa = PBXBuildFile; fileRef = A401D4F71D537AEC006B2909 /* DBAttachmentPickerController.strings */; };
 		A401D4FE1D5545F5006B2909 /* DBAttachmentPickerController.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A401D5001D5545F5006B2909 /* DBAttachmentPickerController.stringsdict */; };
 		A41C4BD71D557B9A002FEA0B /* NSBundle+DBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = A41C4BD61D557B9A002FEA0B /* NSBundle+DBLibrary.m */; };
@@ -33,13 +34,11 @@
 		C3A004DE1CCDE66C00945C1B /* DBAssetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A004DD1CCDE66C00945C1B /* DBAssetImageView.m */; };
 		C3A949421CA188B80061EE61 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A949411CA188B80061EE61 /* CoreLocation.framework */; };
 		C3A949451CA18D440061EE61 /* NSDateFormatter+DBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */; };
-		C7C56FA421F16EE5005EA9C0 /* BEMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */; };
-		C7C56FA521F16EE5005EA9C0 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */; };
-		C7C56FA621F16EE5005EA9C0 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */; };
-		C7C56FA721F16EE5005EA9C0 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2786C85059CE6FD2B7AADFA4 /* Pods-DBAttachmentPickerControllerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBAttachmentPickerControllerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBAttachmentPickerControllerExample/Pods-DBAttachmentPickerControllerExample.release.xcconfig"; sourceTree = "<group>"; };
+		32FC751C5EB33B19A72BB11F /* Pods-DBAttachmentPickerControllerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBAttachmentPickerControllerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DBAttachmentPickerControllerExample/Pods-DBAttachmentPickerControllerExample.debug.xcconfig"; sourceTree = "<group>"; };
 		A401D4F41D537A13006B2909 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A401D4F81D537AEF006B2909 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DBAttachmentPickerController.strings; sourceTree = "<group>"; };
 		A401D4F91D537AF0006B2909 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DBAttachmentPickerController.strings; sourceTree = "<group>"; };
@@ -103,14 +102,7 @@
 		C3A949411CA188B80061EE61 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C3A949431CA18D440061EE61 /* NSDateFormatter+DBLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+DBLibrary.h"; sourceTree = "<group>"; };
 		C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+DBLibrary.m"; sourceTree = "<group>"; };
-		C7C56F9C21F16EE4005EA9C0 /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBoxGroup.h; sourceTree = "<group>"; };
-		C7C56F9D21F16EE4005EA9C0 /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
-		C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBoxGroup.m; sourceTree = "<group>"; };
-		C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
-		C7C56FA021F16EE4005EA9C0 /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
-		C7C56FA121F16EE4005EA9C0 /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
-		C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
-		C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
+		C88EEEA701348E377F70DBF8 /* Pods_DBAttachmentPickerControllerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DBAttachmentPickerControllerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +111,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A949421CA188B80061EE61 /* CoreLocation.framework in Frameworks */,
+				05D25517AA7C30E549330E8D /* Pods_DBAttachmentPickerControllerExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67454F709315F3E6C41D969D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C88EEEA701348E377F70DBF8 /* Pods_DBAttachmentPickerControllerExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A401D4F11D5378F2006B2909 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +144,8 @@
 				C3134EF61C9C33CA0023B9E6 /* Classes */,
 				C3134EFA1C9C34340023B9E6 /* Resources */,
 				C3134EB01C9C30990023B9E6 /* Products */,
+				CFA30C212A0D8D94818BBCF5 /* Pods */,
+				67454F709315F3E6C41D969D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,7 +236,6 @@
 		C3134EF61C9C33CA0023B9E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C7C56F9B21F16ED0005EA9C0 /* BEMCheckBox */,
 				C3134ECA1C9C321C0023B9E6 /* DBAttachmentPickerController */,
 				C3134EF71C9C33CA0023B9E6 /* ViewController.h */,
 				C3134EF81C9C33CA0023B9E6 /* ViewController.m */,
@@ -287,19 +289,13 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		C7C56F9B21F16ED0005EA9C0 /* BEMCheckBox */ = {
+		CFA30C212A0D8D94818BBCF5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C7C56FA021F16EE4005EA9C0 /* BEMAnimationManager.h */,
-				C7C56FA221F16EE5005EA9C0 /* BEMAnimationManager.m */,
-				C7C56F9D21F16EE4005EA9C0 /* BEMCheckBox.h */,
-				C7C56F9F21F16EE4005EA9C0 /* BEMCheckBox.m */,
-				C7C56F9C21F16EE4005EA9C0 /* BEMCheckBoxGroup.h */,
-				C7C56F9E21F16EE4005EA9C0 /* BEMCheckBoxGroup.m */,
-				C7C56FA121F16EE4005EA9C0 /* BEMPathManager.h */,
-				C7C56FA321F16EE5005EA9C0 /* BEMPathManager.m */,
+				32FC751C5EB33B19A72BB11F /* Pods-DBAttachmentPickerControllerExample.debug.xcconfig */,
+				2786C85059CE6FD2B7AADFA4 /* Pods-DBAttachmentPickerControllerExample.release.xcconfig */,
 			);
-			path = BEMCheckBox;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,9 +305,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3134EC61C9C30990023B9E6 /* Build configuration list for PBXNativeTarget "DBAttachmentPickerControllerExample" */;
 			buildPhases = (
+				FADFE5C04BD5B268D5991337 /* [CP] Check Pods Manifest.lock */,
 				C3134EAB1C9C30990023B9E6 /* Sources */,
 				C3134EAC1C9C30990023B9E6 /* Frameworks */,
 				C3134EAD1C9C30990023B9E6 /* Resources */,
+				089520E31FDD6212706A6D81 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -388,6 +386,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		089520E31FDD6212706A6D81 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DBAttachmentPickerControllerExample/Pods-DBAttachmentPickerControllerExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DBAttachmentPickerControllerExample/Pods-DBAttachmentPickerControllerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FADFE5C04BD5B268D5991337 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DBAttachmentPickerControllerExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C3134EAB1C9C30990023B9E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -396,9 +433,7 @@
 				A41C4BD71D557B9A002FEA0B /* NSBundle+DBLibrary.m in Sources */,
 				C3134EF91C9C33CA0023B9E6 /* ViewController.m in Sources */,
 				C3A004DE1CCDE66C00945C1B /* DBAssetImageView.m in Sources */,
-				C7C56FA521F16EE5005EA9C0 /* BEMCheckBox.m in Sources */,
 				C3A949451CA18D440061EE61 /* NSDateFormatter+DBLibrary.m in Sources */,
-				C7C56FA621F16EE5005EA9C0 /* BEMAnimationManager.m in Sources */,
 				C3134EF41C9C323C0023B9E6 /* DBAttachmentPickerController.m in Sources */,
 				C3134EB71C9C30990023B9E6 /* AppDelegate.m in Sources */,
 				C3134EE81C9C323C0023B9E6 /* NSIndexSet+DBLibrary.m in Sources */,
@@ -408,8 +443,6 @@
 				C3134EE91C9C323C0023B9E6 /* UIImage+DBAssetIcons.m in Sources */,
 				C3849AB91C9C3D8C00D12EEF /* DBAssetPickerController.m in Sources */,
 				C3849ABA1C9C3D8C00D12EEF /* DBAttachmentAlertController.m in Sources */,
-				C7C56FA721F16EE5005EA9C0 /* BEMPathManager.m in Sources */,
-				C7C56FA421F16EE5005EA9C0 /* BEMCheckBoxGroup.m in Sources */,
 				C3134EF51C9C323C0023B9E6 /* DBAttachment.m in Sources */,
 				C3849AB51C9C3D8C00D12EEF /* DBAssetGroupsViewController.m in Sources */,
 				C3849AB71C9C3D8C00D12EEF /* DBAssetItemsViewController.m in Sources */,
@@ -558,6 +591,7 @@
 		};
 		C3134EC71C9C30990023B9E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32FC751C5EB33B19A72BB11F /* Pods-DBAttachmentPickerControllerExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DBAttachmentPickerControllerExample/DBAttachmentPickerControllerExample.entitlements;
@@ -575,6 +609,7 @@
 		};
 		C3134EC81C9C30990023B9E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2786C85059CE6FD2B7AADFA4 /* Pods-DBAttachmentPickerControllerExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DBAttachmentPickerControllerExample/DBAttachmentPickerControllerExample.entitlements;

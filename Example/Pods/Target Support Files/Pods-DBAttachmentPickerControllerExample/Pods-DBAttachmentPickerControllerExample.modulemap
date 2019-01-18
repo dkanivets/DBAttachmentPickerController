@@ -1,0 +1,6 @@
+framework module Pods_DBAttachmentPickerControllerExample {
+  umbrella header "Pods-DBAttachmentPickerControllerExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
