@@ -48,7 +48,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.selectedIndexPathArray = [NSMutableArray arrayWithCapacity:100];
+    self.selectedIndexPathArray = [NSMutableArray arrayWithCapacity:10];
     
     self.navigationItem.title = self.assetCollection.localizedTitle;
     
@@ -222,6 +222,12 @@ static NSString * const reuseIdentifier = @"Cell";
     DBThumbnailPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoCellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[DBThumbnailPhotoCell alloc] init];
+    }
+    
+    if ([self.selectedIndexPathArray containsObject:indexPath]) {
+        cell.selectorCheckBox.on = TRUE;
+    } else {
+        cell.selectorCheckBox.on = NO;
     }
     [self configurePhotoCell:cell atIndexPath:indexPath];
     return cell;

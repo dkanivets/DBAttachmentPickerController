@@ -280,6 +280,12 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
     if (cell == nil) {
         cell = [DBThumbnailPhotoCell thumbnailImageCell];
     }
+    
+    if ([self.selectedIndexPathArray containsObject:indexPath]) {
+        cell.selectorCheckBox.on = TRUE;
+    } else {
+        cell.selectorCheckBox.on = NO;
+    }
     [self configurePhotoCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -299,6 +305,8 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
             } else {
                 self.extensionAttachHandler([self getSelectedAssetArray]);
             }
+        } else {
+            cell.selectorCheckBox.on = NO;
         }
     };
     cell.unselectButtonTapHandler = ^(NSIndexPath *indexPath) {
@@ -332,6 +340,14 @@ static NSString *const kPhotoCellIdentifier = @"DBThumbnailPhotoCellID";
                                       cell.assetImageView.image = result;
                                   }
                               }];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPathArray.count >= 10) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

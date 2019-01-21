@@ -22,7 +22,7 @@
 #import <UIKit/UIKit.h>
 #import <Photos/PHImageManager.h>
 #import "DBAssetImageView.h"
-#import "BEMCheckBox.h"
+#import <BEMCheckBox/BEMCheckBox.h>
 
 @interface DBThumbnailPhotoCell : UICollectionViewCell
 
