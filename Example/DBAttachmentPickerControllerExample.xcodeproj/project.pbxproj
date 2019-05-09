@@ -34,6 +34,7 @@
 		C3A004DE1CCDE66C00945C1B /* DBAssetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A004DD1CCDE66C00945C1B /* DBAssetImageView.m */; };
 		C3A949421CA188B80061EE61 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A949411CA188B80061EE61 /* CoreLocation.framework */; };
 		C3A949451CA18D440061EE61 /* NSDateFormatter+DBLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */; };
+		C756139C2284AF48003DCFE7 /* NYTPreviewPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C756139B2284AF48003DCFE7 /* NYTPreviewPhoto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		C3A949411CA188B80061EE61 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C3A949431CA18D440061EE61 /* NSDateFormatter+DBLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+DBLibrary.h"; sourceTree = "<group>"; };
 		C3A949441CA18D440061EE61 /* NSDateFormatter+DBLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+DBLibrary.m"; sourceTree = "<group>"; };
+		C756139A2284AF48003DCFE7 /* NYTPreviewPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYTPreviewPhoto.h; path = ../../Source/Common/NYTPreviewPhoto.h; sourceTree = "<group>"; };
+		C756139B2284AF48003DCFE7 /* NYTPreviewPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYTPreviewPhoto.m; path = ../../Source/Common/NYTPreviewPhoto.m; sourceTree = "<group>"; };
 		C88EEEA701348E377F70DBF8 /* Pods_DBAttachmentPickerControllerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DBAttachmentPickerControllerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,6 +184,8 @@
 		C3134ECA1C9C321C0023B9E6 /* DBAttachmentPickerController */ = {
 			isa = PBXGroup;
 			children = (
+				C756139A2284AF48003DCFE7 /* NYTPreviewPhoto.h */,
+				C756139B2284AF48003DCFE7 /* NYTPreviewPhoto.m */,
 				C3134EE31C9C323C0023B9E6 /* DBAttachmentPickerController.h */,
 				C3134EE41C9C323C0023B9E6 /* DBAttachmentPickerController.m */,
 				C3134ECB1C9C323C0023B9E6 /* Categories */,
@@ -345,6 +350,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ru,
@@ -395,10 +401,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DBAttachmentPickerControllerExample/Pods-DBAttachmentPickerControllerExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -445,6 +455,7 @@
 				C3849ABA1C9C3D8C00D12EEF /* DBAttachmentAlertController.m in Sources */,
 				C3134EF51C9C323C0023B9E6 /* DBAttachment.m in Sources */,
 				C3849AB51C9C3D8C00D12EEF /* DBAssetGroupsViewController.m in Sources */,
+				C756139C2284AF48003DCFE7 /* NYTPreviewPhoto.m in Sources */,
 				C3849AB71C9C3D8C00D12EEF /* DBAssetItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

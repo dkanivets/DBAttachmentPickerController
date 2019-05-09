@@ -13,4 +13,6 @@ Pod::Spec.new do |s|
   s.resource_bundle = { 'DBAttachmentPickerController' => ['Source/Localization/*.lproj'] }
   s.public_header_files = 'Source/**/*.h'
   s.dependency 'BEMCheckBox', '~> 1.4.1'
+  s.dependency 'NYTPhotoViewer'
+
 end

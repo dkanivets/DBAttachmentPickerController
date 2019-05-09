@@ -1,16 +1,29 @@
 PODS:
   - BEMCheckBox (1.4.1)
+  - FLAnimatedImage (1.0.12)
+  - NYTPhotoViewer (2.0.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 2.0.0)
+    - NYTPhotoViewer/Core (= 2.0.0)
+  - NYTPhotoViewer/AnimatedGifSupport (2.0.0):
+    - FLAnimatedImage (~> 1.0.12)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (2.0.0)
 
 DEPENDENCIES:
   - BEMCheckBox (~> 1.4.1)
+  - NYTPhotoViewer
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - BEMCheckBox
+    - FLAnimatedImage
+    - NYTPhotoViewer
 
 SPEC CHECKSUMS:
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  NYTPhotoViewer: 34b8bd6bcc297466adec1668f9a01249d73c90e6
 
-PODFILE CHECKSUM: 78cc79fbbe2cc7b1300de008d26f6624f68a8a32
+PODFILE CHECKSUM: 4d412a80515a94c85f6525921805440951273dff
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0

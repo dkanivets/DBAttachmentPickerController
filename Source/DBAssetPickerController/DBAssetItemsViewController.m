@@ -26,6 +26,8 @@
 #import "NSBundle+DBLibrary.h"
 #import "DBAttachmentPickerController.h"
 #import "DBAssetPickerController.h"
+#import "NYTPhotoViewer.h"
+#import "NYTPreviewPhoto.h"
 
 static const NSInteger kNumberItemsPerRowPortrait = 4;
 static const NSInteger kNumberItemsPerRowLandscape = 7;
@@ -312,8 +314,28 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    [self.selectedIndexPathArray addObject:indexPath];
+    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeExact;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+    
+    [self.imageManager requestImageForAsset:asset
+                                                         targetSize:PHImageManagerMaximumSize
+                                                        contentMode:PHImageContentModeDefault
+                                                            options:options
+                                                      resultHandler:^(UIImage *result, NSDictionary *info) {
+                                                          NYTPreviewPhoto *photo = [NYTPreviewPhoto new];
+                                                          photo.image = result;
+                                                          NYTPhotoViewerSinglePhotoDataSource *dataSource = [[NYTPhotoViewerSinglePhotoDataSource alloc] initWithPhoto: photo];
+                                                          NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithDataSource:dataSource initialPhoto:nil delegate:nil];
+                                                          [self presentViewController:photosViewController animated:YES completion:nil];
+                                            
+                                                      }];
+    
+
+    
+    //    [self.selectedIndexPathArray addObject:indexPath];
 //    NSString *text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)self.selectedIndexPathArray.count];
 //    self.countButton.text = text;
 //    self.countButton.hidden = (([text  isEqual: @""]) || (text == nil) || ([text  isEqual: @"0"]));
