@@ -189,8 +189,10 @@
                                                           contentMode:PHImageContentModeDefault
                                                               options:nil
                                                         resultHandler:^(UIImage *result, NSDictionary *info) {
-                                                            completion(result);
-                                                        }];
+                                                            if (![info[PHImageResultIsDegradedKey] boolValue]) {
+                                                                completion(result);
+                                                            }
+                }];
             }
             break;
         case DBAttachmentSourceTypeImage: {
