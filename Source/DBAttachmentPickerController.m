@@ -347,31 +347,6 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
     
     if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusDenied) {
         [self goToSettingsAlert];
-    } else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusNotDetermined) {
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            if (granted == YES) {
-                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                picker.delegate = self;
-                picker.allowsEditing = NO;
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                
-                if ( (self.mediaType & DBAttachmentMediaTypeImage) && !(self.mediaType & DBAttachmentMediaTypeVideo) ) {
-                    picker.mediaTypes = @[(NSString *)kUTTypeImage];
-                    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                } else if ( !(self.mediaType & DBAttachmentMediaTypeImage) && (self.mediaType & DBAttachmentMediaTypeVideo) ) {
-                    picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo];
-                    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-                    picker.videoQuality = self.capturedVideoQulity;
-                } else {
-                    picker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeVideo, (NSString *)kUTTypeImage];
-                    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                }
-                
-                [self.initialViewController presentViewController:picker animated:YES completion:nil];
-            } else {
-                [self goToSettingsAlert];
-            }
-        }];
     } else {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
