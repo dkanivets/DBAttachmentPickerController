@@ -50,7 +50,7 @@
     model.photoAsset = asset;
     
     NSArray *resources = [PHAssetResource assetResourcesForAsset:asset];
-    PHAssetResource *resource = [resources firstObject];
+    PHAssetResource *resource = [resources lastObject];
     switch (asset.mediaType) {
         case PHAssetMediaTypeImage:
             model.mediaType = DBAttachmentMediaTypeImage;
