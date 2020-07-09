@@ -318,7 +318,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     
     [self.imageManager requestImageForAsset:asset
                                                          targetSize:PHImageManagerMaximumSize
